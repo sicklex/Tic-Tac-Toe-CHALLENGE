@@ -24,12 +24,15 @@ eventEl.addEventListener("click", e =>{
             if (playerOne && itsAlive) {
                 key.textContent = "X"
                 board[clickedCellIndex] = "X"
+                available.push("X")
                 playerOne = false
             } else if (!playerOne && itsAlive) {
                 key.textContent = "O"
                 board[clickedCellIndex] = "O"
+                available.push("X")
                 playerOne = true
             }
+            console.log(available.length)
             checkWinner()
         } 
     }
@@ -51,7 +54,11 @@ function checkWinner(){
             winner = "O"
             menssageEl.textContent = `${winner} its the winner`
             itsAlive = false
+        }if (winner === null && available.length === 9) {
+            winner = "Tie"
+            menssageEl.textContent = `${winner} its the winner`
         }
     }
 }
+
 
